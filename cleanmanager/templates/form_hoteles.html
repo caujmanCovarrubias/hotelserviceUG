@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoteles</title>
+</head>
+<body>
+    <h1>HOTELES</h1>
+
+    <form action="{% url 'hoteles' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+        <legend>
+          <h1>Hotel</h1>
+        </legend>
+        {% if form.errors %}
+        <p class="error"><strong>{{ form.errors }}</strong></p>
+        {% endif %}
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" />
+        <br/>
+        <label for="direccion">Dirección</label>
+        <input type="text" name="direccion" />
+        <br/>
+        <label for="num_habitaciones">Número de Habitaciones</label>
+        <input type="number" name="num_habitaciones" />
+        <br/>
+        <input type="submit" value="Submit">
+      </fieldset>
+    </form>
+
+    <ul>
+        {% for hotel in hoteles %}
+        <li>{{ hotel.nombre }} - {{ hotel.direccion }} - {{ hotel.num_habitaciones }} habitaciones</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
